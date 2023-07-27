@@ -107,25 +107,17 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header" style={{ display: "flex", gap: "20px" }}>
+    <div className="app-wrap">
+      <header className="app">
         <div>
           <h3>Background Color</h3>
-          <div
-            className="color-palette"
-            style={{ display: "flex", gap: 2, margin: "5px" }}
-          >
+          <div className="color-palette">
             {backgroundStyles.map((styleName) => (
               <div
                 key={styleName}
-                className={`bg-style ${
-                  styleName === backgroundStyle ? "selected" : ""
+                className={`bg-style${
+                  styleName === backgroundStyle ? " selected" : ""
                 } ${styleName}`}
-                style={{
-                  width: 15,
-                  height: 15,
-                  borderRadius: 2,
-                }}
                 onClick={() => setBackgroundStyle(styleName)}
               ></div>
             ))}
@@ -133,61 +125,30 @@ function App() {
         </div>
         <div>
           <h3>Cell Color</h3>
-          <div
-            className="color-palette"
-            style={{ display: "flex", gap: 2, margin: "5px" }}
-          >
+          <div className="color-palette">
             {tiles.map((tile) => (
               <div
                 key={tile}
-                className={`tile ${
-                  tile === selectedTile ? "selected" : ""
+                className={`tile${
+                  tile === selectedTile ? " selected" : ""
                 } ${tile}`}
-                style={{
-                  width: 15,
-                  height: 15,
-                  borderRadius: 2,
-                }}
                 onClick={() => setSelectedTile(tile)}
               ></div>
             ))}
           </div>
         </div>
-        <div style={{ alignSelf: "flex-end", margin: "5px" }}>
+        <div className="controls">
           <button onClick={handleResetGrid}>Reset Grid</button>
         </div>
       </header>
-      <main
-        className={`App-main ${backgroundStyle}`}
-        style={{
-          margin: "5px",
-          padding: "100px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <div
-          className="grid"
-          style={{
-            border: "1px solid black",
-            borderLeft: "none",
-            borderTop: "none",
-          }}
-        >
+      <main className="app">
+        <div className={`grid ${backgroundStyle}`}>
           {grid.map((row, rowIndex) => (
-            <div key={rowIndex} className="row" style={{ display: "flex" }}>
+            <div key={rowIndex} className="row">
               {row.map((tile, colIndex) => (
                 <div
                   key={colIndex}
                   className={`cell ${tile}`}
-                  style={{
-                    width: 50,
-                    height: 50,
-                    border: "1px solid black",
-                    borderRight: "none",
-                    borderBottom: "none",
-                  }}
                   onClick={() =>
                     handleCellClick(rowIndex, colIndex, selectedTile)
                   }
