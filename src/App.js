@@ -7,6 +7,7 @@ function App() {
     const storedGrid = localStorage.getItem("grid");
     return storedGrid ? JSON.parse(storedGrid) : initialGrid();
   });
+
   const tiles = [
     "bark",
     "black-rock",
@@ -92,7 +93,7 @@ function App() {
     localStorage.setItem("grid", JSON.stringify(grid));
   }, [grid]);
 
-  const handleCellClick = (rowIndex, colIndex, tile) => {
+  const handleCellPaint = (rowIndex, colIndex, tile) => {
     if (reservedCells.has([rowIndex, colIndex].toString())) {
       return;
     } else {
@@ -104,6 +105,20 @@ function App() {
     localStorage.removeItem("grid");
     setGrid(initialGrid());
     setupReservedCells();
+  };
+
+  const [isPainting, setIsPainting] = useState(false);
+  const handleMouseDown = (rowIndex, colIndex) => {
+    handleCellPaint(rowIndex, colIndex, selectedTile);
+    setIsPainting(true);
+  };
+  const handleMouseEnter = (rowIndex, colIndex) => {
+    if (isPainting) {
+      handleCellPaint(rowIndex, colIndex, selectedTile);
+    }
+  };
+  const handleMouseUp = () => {
+    setIsPainting(false);
   };
 
   return (
@@ -149,9 +164,9 @@ function App() {
                 <div
                   key={colIndex}
                   className={`cell ${tile}`}
-                  onClick={() =>
-                    handleCellClick(rowIndex, colIndex, selectedTile)
-                  }
+                  onMouseDown={() => handleMouseDown(rowIndex, colIndex)}
+                  onMouseEnter={() => handleMouseEnter(rowIndex, colIndex)}
+                  onMouseUp={handleMouseUp}
                 ></div>
               ))}
             </div>
