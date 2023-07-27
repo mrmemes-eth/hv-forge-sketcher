@@ -43,9 +43,11 @@ function App() {
 
   const reservedCells = useMemo(() => new Set(), []);
 
+  const cloneObject = (obj) => JSON.parse(JSON.stringify(obj));
+
   const setCellTile = (bg, rowIndex, colIndex, tile) => {
     setSaveData((prevSaveData) => {
-      const updatedSaveData = JSON.parse(JSON.stringify(prevSaveData));
+      const updatedSaveData = cloneObject(prevSaveData);
       updatedSaveData[bg]["grid"][rowIndex][colIndex] = tile;
       return updatedSaveData;
     });
@@ -116,7 +118,7 @@ function App() {
 
   const handleResetGrid = () => {
     setSaveData((prevSaveData) => {
-      const updatedSaveData = JSON.parse(JSON.stringify(prevSaveData));
+      const updatedSaveData = cloneObject(prevSaveData);
       updatedSaveData[backgroundStyle]["grid"] = initializeGrid();
       return updatedSaveData;
     });
@@ -126,7 +128,7 @@ function App() {
   const handleSaveRestorePoint = () => {
     // update restorepoint attribute in saveData
     setSaveData((prevSaveData) => {
-      const updatedSaveData = JSON.parse(JSON.stringify(prevSaveData));
+      const updatedSaveData = cloneObject(prevSaveData);
       updatedSaveData[backgroundStyle]["restorePoint"] = JSON.parse(
         JSON.stringify(updatedSaveData[backgroundStyle]["grid"])
       );
@@ -137,7 +139,7 @@ function App() {
   const handleRestore = () => {
     if (saveData[backgroundStyle]["restorePoint"]) {
       setSaveData((prevSaveData) => {
-        const updatedSaveData = JSON.parse(JSON.stringify(prevSaveData));
+        const updatedSaveData = cloneObject(prevSaveData);
         updatedSaveData[backgroundStyle]["grid"] =
           saveData[backgroundStyle]["restorePoint"];
         return updatedSaveData;
