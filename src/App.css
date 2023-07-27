@@ -181,8 +181,7 @@ main.app .grid {
   animation: borderAnimation 1s infinite linear;
 }
 
-.color-palette .blank,
-.color-palette .blank.selected {
+.color-palette .blank {
   background-image: linear-gradient(
       -45deg,
       transparent 47%,

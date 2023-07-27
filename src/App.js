@@ -2,12 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import "./App.css";
 
 function App() {
-  const initialGrid = () => Array(13).fill(Array(21).fill("blank"));
-  const [grid, setGrid] = useState(() => {
-    const storedGrid = localStorage.getItem("grid");
-    return storedGrid ? JSON.parse(storedGrid) : initialGrid();
-  });
-
   const tiles = [
     "bark",
     "black-rock",
@@ -26,17 +20,31 @@ function App() {
     "blank",
   ];
   const backgroundStyles = ["glitch", "bio", "knight"];
-
   const [selectedTile, setSelectedTile] = useState("blank");
-  const [backgroundStyle, setBackgroundStyle] = useState("blank");
+  const [backgroundStyle, setBackgroundStyle] = useState(backgroundStyles[0]);
+
+  const initializeGrid = () => Array(13).fill(Array(21).fill("blank"));
+
+  const initializeSaveData = () => {
+    const saveData = {};
+    backgroundStyles.forEach((style) => {
+      saveData[style] = initializeGrid();
+    });
+    return saveData;
+  };
+
+  const [saveData, setSaveData] = useState(() => {
+    const storedSaveData = localStorage.getItem("grid-data");
+    return storedSaveData ? JSON.parse(storedSaveData) : initializeSaveData();
+  });
 
   const reservedCells = useMemo(() => new Set(), []);
 
-  const setCellTile = (rowIndex, colIndex, tile) => {
-    setGrid((prevGrid) => {
-      const updatedGrid = JSON.parse(JSON.stringify(prevGrid));
-      updatedGrid[rowIndex][colIndex] = tile;
-      return updatedGrid;
+  const setCellTile = (bg, rowIndex, colIndex, tile) => {
+    setSaveData((prevSaveData) => {
+      const updatedSaveData = JSON.parse(JSON.stringify(prevSaveData));
+      updatedSaveData[bg][rowIndex][colIndex] = tile;
+      return updatedSaveData;
     });
   };
 
@@ -80,30 +88,32 @@ function App() {
       [[12, 13], "restricted portal"],
       [[12, 14], "restricted portal"],
     ];
-    reservedCellEntries.forEach(([pos, tile]) => {
-      reservedCells.add(pos.toString());
-      const [rowIndex, colIndex] = pos;
-      setCellTile(rowIndex, colIndex, tile);
+    backgroundStyles.forEach((style) => {
+      reservedCellEntries.forEach(([pos, tile]) => {
+        reservedCells.add(pos.toString());
+        const [rowIndex, colIndex] = pos;
+        setCellTile(style, rowIndex, colIndex, tile);
+      });
     });
   };
 
   useEffect(setupReservedCells, []);
 
   useEffect(() => {
-    localStorage.setItem("grid", JSON.stringify(grid));
-  }, [grid]);
+    localStorage.setItem("grid-data", JSON.stringify(saveData));
+  }, [saveData]);
 
   const handleCellPaint = (rowIndex, colIndex, tile) => {
     if (reservedCells.has([rowIndex, colIndex].toString())) {
       return;
     } else {
-      setCellTile(rowIndex, colIndex, tile);
+      setCellTile(backgroundStyle, rowIndex, colIndex, tile);
     }
   };
 
   const handleResetGrid = () => {
     localStorage.removeItem("grid");
-    setGrid(initialGrid());
+    saveData[backgroundStyle] = initializeGrid();
     setupReservedCells();
   };
 
@@ -158,7 +168,7 @@ function App() {
       </header>
       <main className="app">
         <div className={`grid ${backgroundStyle}`}>
-          {grid.map((row, rowIndex) => (
+          {saveData[backgroundStyle].map((row, rowIndex) => (
             <div key={rowIndex} className="row">
               {row.map((tile, colIndex) => (
                 <div
