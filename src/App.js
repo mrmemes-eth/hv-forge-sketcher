@@ -1,23 +1,202 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useMemo, useState } from "react";
+import "./App.css";
 
 function App() {
+  const initialGrid = () => Array(13).fill(Array(21).fill("blank"));
+  const [grid, setGrid] = useState(() => {
+    const storedGrid = localStorage.getItem("grid");
+    return storedGrid ? JSON.parse(storedGrid) : initialGrid();
+  });
+  const tiles = [
+    "bark",
+    "black-rock",
+    "clay",
+    "concrete",
+    "grassland",
+    "heavy-metal",
+    "lawn",
+    "light-concrete",
+    "metal",
+    "nailed-metal",
+    "sand",
+    "warehouse",
+    "watermelon",
+    "wooden-floor",
+    "blank",
+  ];
+  const backgroundStyles = ["glitch", "bio", "knight"];
+
+  const [selectedTile, setSelectedTile] = useState("blank");
+  const [backgroundStyle, setBackgroundStyle] = useState("blank");
+
+  const reservedCells = useMemo(() => new Set(), []);
+
+  const setCellTile = (rowIndex, colIndex, tile) => {
+    setGrid((prevGrid) => {
+      const updatedGrid = JSON.parse(JSON.stringify(prevGrid));
+      updatedGrid[rowIndex][colIndex] = tile;
+      return updatedGrid;
+    });
+  };
+
+  const setupReservedCells = () => {
+    const reservedCellEntries = [
+      [[4, 0], "restricted base"],
+      [[4, 1], "restricted base"],
+      [[4, 2], "restricted base"],
+      [[5, 0], "restricted base"],
+      [[5, 1], "restricted base"],
+      [[5, 2], "restricted base"],
+      [[6, 0], "restricted base"],
+      [[6, 1], "restricted base"],
+      [[6, 2], "restricted base"],
+      [[7, 0], "restricted base"],
+      [[7, 1], "restricted base"],
+      [[7, 2], "restricted base"],
+      [[0, 4], "restricted portal"],
+      [[1, 4], "restricted portal"],
+      [[0, 5], "restricted portal"],
+      [[1, 5], "restricted portal"],
+      [[0, 11], "restricted portal"],
+      [[1, 11], "restricted portal"],
+      [[0, 12], "restricted portal"],
+      [[1, 12], "restricted portal"],
+      [[3, 17], "restricted portal"],
+      [[4, 17], "restricted portal"],
+      [[3, 18], "restricted portal"],
+      [[4, 18], "restricted portal"],
+      [[5, 18], "restricted big-portal"],
+      [[6, 18], "restricted big-portal"],
+      [[7, 18], "restricted big-portal"],
+      [[5, 19], "restricted big-portal"],
+      [[6, 19], "restricted big-portal"],
+      [[7, 19], "restricted big-portal"],
+      [[5, 20], "restricted big-portal"],
+      [[6, 20], "restricted big-portal"],
+      [[7, 20], "restricted big-portal"],
+      [[11, 13], "restricted portal"],
+      [[11, 14], "restricted portal"],
+      [[12, 13], "restricted portal"],
+      [[12, 14], "restricted portal"],
+    ];
+    reservedCellEntries.forEach(([pos, tile]) => {
+      reservedCells.add(pos.toString());
+      const [rowIndex, colIndex] = pos;
+      setCellTile(rowIndex, colIndex, tile);
+    });
+  };
+
+  useEffect(setupReservedCells, []);
+
+  useEffect(() => {
+    localStorage.setItem("grid", JSON.stringify(grid));
+  }, [grid]);
+
+  const handleCellClick = (rowIndex, colIndex, tile) => {
+    if (reservedCells.has([rowIndex, colIndex].toString())) {
+      return;
+    } else {
+      setCellTile(rowIndex, colIndex, tile);
+    }
+  };
+
+  const handleResetGrid = () => {
+    localStorage.removeItem("grid");
+    setGrid(initialGrid());
+    setupReservedCells();
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="App-header" style={{ display: "flex", gap: "20px" }}>
+        <div>
+          <h3>Background Color</h3>
+          <div
+            className="color-palette"
+            style={{ display: "flex", gap: 2, margin: "5px" }}
+          >
+            {backgroundStyles.map((styleName) => (
+              <div
+                key={styleName}
+                className={`bg-style ${
+                  styleName === backgroundStyle ? "selected" : ""
+                } ${styleName}`}
+                style={{
+                  width: 15,
+                  height: 15,
+                  borderRadius: 2,
+                }}
+                onClick={() => setBackgroundStyle(styleName)}
+              ></div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h3>Cell Color</h3>
+          <div
+            className="color-palette"
+            style={{ display: "flex", gap: 2, margin: "5px" }}
+          >
+            {tiles.map((tile) => (
+              <div
+                key={tile}
+                className={`tile ${
+                  tile === selectedTile ? "selected" : ""
+                } ${tile}`}
+                style={{
+                  width: 15,
+                  height: 15,
+                  borderRadius: 2,
+                }}
+                onClick={() => setSelectedTile(tile)}
+              ></div>
+            ))}
+          </div>
+        </div>
+        <div style={{ alignSelf: "flex-end", margin: "5px" }}>
+          <button onClick={handleResetGrid}>Reset Grid</button>
+        </div>
       </header>
+      <main
+        className={`App-main ${backgroundStyle}`}
+        style={{
+          margin: "5px",
+          padding: "100px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          className="grid"
+          style={{
+            border: "1px solid black",
+            borderLeft: "none",
+            borderTop: "none",
+          }}
+        >
+          {grid.map((row, rowIndex) => (
+            <div key={rowIndex} className="row" style={{ display: "flex" }}>
+              {row.map((tile, colIndex) => (
+                <div
+                  key={colIndex}
+                  className={`cell ${tile}`}
+                  style={{
+                    width: 50,
+                    height: 50,
+                    border: "1px solid black",
+                    borderRight: "none",
+                    borderBottom: "none",
+                  }}
+                  onClick={() =>
+                    handleCellClick(rowIndex, colIndex, selectedTile)
+                  }
+                ></div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </main>
     </div>
   );
 }

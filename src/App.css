@@ -1,38 +1,147 @@
-.App {
-  text-align: center;
+.bark {
+  background: #cba287;
+}
+.black-rock {
+  background: #26262a;
+}
+.clay {
+  background: #d2af8f;
+}
+.concrete {
+  background: #c7c6cb;
+}
+.grassland {
+  background: #9d9c5b;
+}
+.heavy-metal {
+  background: #5b2b62;
+}
+.lawn {
+  background: #726b31;
+}
+.light-concrete {
+  background: #97919a;
+}
+.metal {
+  background: #aa7cad;
+}
+.nailed-metal {
+  background: #342140;
+}
+.sand {
+  background: #d0c3ba;
+}
+.warehouse {
+  background: #b7b0bd;
+}
+.watermelon {
+  background: #354220;
+}
+.wooden-floor {
+  background: #a8694b;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.bio {
+  background: #416f19;
+}
+.knight {
+  background: #54a9c9;
+}
+.glitch {
+  background: #5c787f;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.blank {
+  background: clear;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.color-palette div {
+  border: 1px solid rgba(16, 16, 16, 0.9);
 }
 
-.App-link {
-  color: #61dafb;
+.color-pallette .blank.selected,
+.color-palette .tile.selected {
+  border-style: dashed;
 }
 
-@keyframes App-logo-spin {
+@keyframes borderAnimation {
   from {
-    transform: rotate(0deg);
+    background-position: 0 0, -2px 0, 100% -2px, 0 100%;
   }
   to {
-    transform: rotate(360deg);
+    background-position: 0 -2px, 0 0, 100% 0, -2px 100%;
   }
+}
+
+.color-palette .selected:not(.blank) {
+  border-style: dashed;
+  background-image: repeating-linear-gradient(
+      -60deg,
+      #ccc,
+      #ccc 1px,
+      transparent 1px,
+      transparent 2px,
+      #ccc 2px
+    ),
+    repeating-linear-gradient(
+      30deg,
+      #ccc,
+      #ccc 1px,
+      transparent 1px,
+      transparent 2px,
+      #ccc 2px
+    ),
+    repeating-linear-gradient(
+      120deg,
+      #ccc,
+      #ccc 1px,
+      transparent 1px,
+      transparent 2px,
+      #ccc 2px
+    ),
+    repeating-linear-gradient(
+      210deg,
+      #ccc,
+      #ccc 1px,
+      transparent 1px,
+      transparent 2px,
+      #ccc 2px
+    );
+  background-size: 1px calc(100% + 4px), calc(100% + 4px) 1px,
+    1px calc(100% + 4px), calc(100% + 4px) 1px;
+  background-position: 0 0, 0 0, 100% 0, 0 100%;
+  background-repeat: no-repeat;
+  animation: borderAnimation 1s infinite linear;
+}
+
+.color-palette .blank,
+.color-palette .blank.selected {
+  background-image: linear-gradient(
+      -45deg,
+      transparent 47%,
+      red 47%,
+      red 53%,
+      transparent 53%,
+      transparent 100%
+    ),
+    linear-gradient(
+      -45deg,
+      transparent 47%,
+      red 47%,
+      red 53%,
+      transparent 53%,
+      transparent 100%
+    );
+}
+
+.restricted.base {
+  background: pink;
+}
+
+.restricted.portal {
+  background: darkgrey;
+}
+
+.restricted.big-portal {
+  background: grey;
 }
