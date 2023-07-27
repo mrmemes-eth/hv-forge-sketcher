@@ -28,7 +28,10 @@ function App() {
   const initializeSaveData = () => {
     const saveData = {};
     backgroundStyles.forEach((style) => {
-      saveData[style] = initializeGrid();
+      saveData[style] = {
+        grid: initializeGrid(),
+        restorePoint: null,
+      };
     });
     return saveData;
   };
@@ -43,7 +46,7 @@ function App() {
   const setCellTile = (bg, rowIndex, colIndex, tile) => {
     setSaveData((prevSaveData) => {
       const updatedSaveData = JSON.parse(JSON.stringify(prevSaveData));
-      updatedSaveData[bg][rowIndex][colIndex] = tile;
+      updatedSaveData[bg]["grid"][rowIndex][colIndex] = tile;
       return updatedSaveData;
     });
   };
@@ -112,9 +115,34 @@ function App() {
   };
 
   const handleResetGrid = () => {
-    localStorage.removeItem("grid");
-    saveData[backgroundStyle] = initializeGrid();
+    setSaveData((prevSaveData) => {
+      const updatedSaveData = JSON.parse(JSON.stringify(prevSaveData));
+      updatedSaveData[backgroundStyle]["grid"] = initializeGrid();
+      return updatedSaveData;
+    });
     setupReservedCells();
+  };
+
+  const handleSaveRestorePoint = () => {
+    // update restorepoint attribute in saveData
+    setSaveData((prevSaveData) => {
+      const updatedSaveData = JSON.parse(JSON.stringify(prevSaveData));
+      updatedSaveData[backgroundStyle]["restorePoint"] = JSON.parse(
+        JSON.stringify(updatedSaveData[backgroundStyle]["grid"])
+      );
+      return updatedSaveData;
+    });
+  };
+
+  const handleRestore = () => {
+    if (saveData[backgroundStyle]["restorePoint"]) {
+      setSaveData((prevSaveData) => {
+        const updatedSaveData = JSON.parse(JSON.stringify(prevSaveData));
+        updatedSaveData[backgroundStyle]["grid"] =
+          saveData[backgroundStyle]["restorePoint"];
+        return updatedSaveData;
+      });
+    }
   };
 
   const [isPainting, setIsPainting] = useState(false);
@@ -133,9 +161,7 @@ function App() {
 
   const kebabToTitleCase = (kebab) => {
     const words = kebab.split("-");
-    return words
-      .map((word) => word[0].toUpperCase() + word.slice(1))
-      .join(" ");
+    return words.map((word) => word[0].toUpperCase() + word.slice(1)).join(" ");
   };
 
   return (
@@ -173,11 +199,13 @@ function App() {
         </div>
         <div className="controls">
           <button onClick={handleResetGrid}>Reset Grid</button>
+          <button onClick={handleSaveRestorePoint}>Save Restore Point</button>
+          <button onClick={handleRestore}>Restore</button>
         </div>
       </header>
       <main className="app">
         <div className={`grid ${backgroundStyle}`}>
-          {saveData[backgroundStyle].map((row, rowIndex) => (
+          {saveData[backgroundStyle]["grid"].map((row, rowIndex) => (
             <div key={rowIndex} className="row">
               {row.map((tile, colIndex) => (
                 <div
