@@ -7,9 +7,9 @@ div.app-wrap {
 
 header.app {
   display: flex;
-  gap: 30px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   border-bottom: 1px solid rgba(16, 16, 16, 0.9);
+  justify-content: space-between;
 }
 
 main.app {
@@ -18,7 +18,7 @@ main.app {
 }
 
 header.app .controls {
-  align-self: flex-end;
+  align-self: center;
 }
 
 main.app .grid {
@@ -40,13 +40,17 @@ main.app .grid {
   border-bottom: none;
 }
 
+.palette .selected-swatch{
+  font-size: small;
+  font-style: italic;
+}
 
-.color-palette {
+.swatches {
   display: flex;
   gap: 2px;
 }
 
-.color-palette div {
+.swatches div {
   width: 15px;
   height: 15px;
   border-radius: 2px;
@@ -96,15 +100,15 @@ main.app .grid {
   background: #a8694b;
 }
 
-.color-palette .bio {
+.swatches .bio {
   background: #416f19;
 }
 
-.color-palette .knight {
+.swatches .knight {
   background: #54a9c9;
 }
 
-.color-palette .glitch {
+.swatches .glitch {
   background: #5c787f;
 }
 
@@ -122,12 +126,12 @@ main.app .grid {
   background: clear;
 }
 
-.color-palette div {
+.swatches div {
   border: 1px solid rgba(16, 16, 16, 0.9);
 }
 
-.color-palette .blank.selected,
-.color-palette .tile.selected {
+.swatches .blank.selected,
+.swatches .tile.selected {
   border-style: dashed;
 }
 
@@ -140,7 +144,7 @@ main.app .grid {
   }
 }
 
-.color-palette .selected:not(.blank) {
+.swatches .selected:not(.blank) {
   border-style: dashed;
   background-image: repeating-linear-gradient(
       -60deg,
@@ -181,7 +185,7 @@ main.app .grid {
   animation: borderAnimation 1s infinite linear;
 }
 
-.color-palette .blank {
+.swatches .blank {
   background-image: linear-gradient(
       -45deg,
       transparent 47%,

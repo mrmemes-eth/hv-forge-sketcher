@@ -131,12 +131,19 @@ function App() {
     setIsPainting(false);
   };
 
+  const kebabToTitleCase = (kebab) => {
+    const words = kebab.split("-");
+    return words
+      .map((word) => word[0].toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
   return (
     <div className="app-wrap">
       <header className="app">
-        <div>
-          <h3>Background Color</h3>
-          <div className="color-palette">
+        <div className="palette">
+          <h3>HV Type</h3>
+          <div className="swatches">
             {backgroundStyles.map((styleName) => (
               <div
                 key={styleName}
@@ -147,10 +154,11 @@ function App() {
               ></div>
             ))}
           </div>
+          <p className="selected-swatch">{kebabToTitleCase(backgroundStyle)}</p>
         </div>
-        <div>
-          <h3>Cell Color</h3>
-          <div className="color-palette">
+        <div className="palette">
+          <h3>Tile Pattern</h3>
+          <div className="swatches">
             {tiles.map((tile) => (
               <div
                 key={tile}
@@ -161,6 +169,7 @@ function App() {
               ></div>
             ))}
           </div>
+          <p className="selected-swatch">{kebabToTitleCase(selectedTile)}</p>
         </div>
         <div className="controls">
           <button onClick={handleResetGrid}>Reset Grid</button>
