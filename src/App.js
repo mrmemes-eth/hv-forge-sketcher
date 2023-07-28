@@ -166,6 +166,13 @@ function App() {
     return words.map((word) => word[0].toUpperCase() + word.slice(1)).join(" ");
   };
 
+  const countTiles = () => {
+    const count = saveData[backgroundStyle]["grid"]
+      .flatMap((row) => row.filter((cell) => cell !== "blank"))
+      .length;
+    return count - reservedCells.size;
+  };
+
   return (
     <div className="app-wrap">
       <header className="app">
@@ -200,6 +207,7 @@ function App() {
           <p className="selected-swatch">{kebabToTitleCase(selectedTile)}</p>
         </div>
         <div className="controls">
+          <p>Tile Count: {countTiles()}</p>
           <button onClick={handleResetGrid}>Reset Grid</button>
           <button onClick={handleSaveRestorePoint}>Save Restore Point</button>
           <button onClick={handleRestore}>Restore</button>
