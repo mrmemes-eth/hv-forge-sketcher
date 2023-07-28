@@ -1,5 +1,6 @@
 div.app-wrap {
   display: flex;
+  min-width: 800px;
   flex-direction: column;
   gap: 20px;
   padding: 10px;
@@ -23,6 +24,8 @@ header.app .controls {
 
 main.app .grid {
   width: 100%;
+  max-width: calc(calc(100vh - 200px) * calc(21 / 13));
+  max-height: calc(100vh - 200px);
   border: 1px solid rgba(16, 16, 16, 0.9);
   border-left: none;
   border-top: none;
@@ -34,6 +37,7 @@ main.app .grid {
 
 .grid .cell{
   width: calc(100% / 21);
+  max-width: calc(calc(100vh - 200px) / 13);
   aspect-ratio: 1;
   border: 1px solid rgba(16, 16, 16, 0.9);
   border-right: none;
