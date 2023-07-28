@@ -56,6 +56,12 @@ main.app .grid {
   border-radius: 2px;
 }
 
+.preview {
+  height: 75px;
+  aspect-ratio: 1;
+  align-self: center;
+}
+
 .bark {
   background: #cba287 ;
   position: relative;

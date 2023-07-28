@@ -206,6 +206,7 @@ function App() {
           </div>
           <p className="selected-swatch">{kebabToTitleCase(selectedTile)}</p>
         </div>
+        <div className={ `preview ${selectedTile}` }></div>
         <div className="controls">
           <p>Tile Count: {countTiles()}</p>
           <button onClick={handleResetGrid}>Reset Grid</button>
