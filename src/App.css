@@ -56,48 +56,201 @@ main.app .grid {
   border-radius: 2px;
 }
 
-
 .bark {
-  background: #cba287;
+  background: #cba287 ;
+  position: relative;
 }
+
+.bark::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/bark.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
+}
+
 .black-rock {
   background: #26262a;
+  position: relative;
 }
+.black-rock::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/black-rock.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
+}
+
 .clay {
   background: #d2af8f;
+  position: relative;
 }
+.clay::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/clay.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
+}
+
 .concrete {
   background: #c7c6cb;
+  position: relative;
 }
+.concrete::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/concrete.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
+}
+
 .grassland {
   background: #9d9c5b;
+  position: relative;
 }
+.grassland::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/grassland.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
+}
+
 .heavy-metal {
   background: #5b2b62;
+  position: relative;
 }
+.heavy-metal::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/heavy-metal.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
+}
+
 .lawn {
   background: #726b31;
+  position: relative;
 }
+.lawn::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/lawn.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
+}
+
 .light-concrete {
   background: #97919a;
+  position: relative;
 }
+.light-concrete::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/light-concrete.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
+}
+
 .metal {
   background: #aa7cad;
+  position: relative;
 }
+.metal::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/metal.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
+}
+
 .nailed-metal {
   background: #342140;
+  position: relative;
 }
+.nailed-metal::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/nailed-metal.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
+}
+
 .sand {
   background: #d0c3ba;
+  position: relative;
 }
+.sand::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/sand.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
+}
+
 .warehouse {
   background: #b7b0bd;
+  position: relative;
 }
+.warehouse::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/warehouse.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
+}
+
 .watermelon {
   background: #354220;
+  position: relative;
 }
+.watermelon::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/watermelon.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
+}
+
 .wooden-floor {
   background: #a8694b;
+  position: relative;
+}
+.wooden-floor::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/wooden-floor.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
 }
 
 .swatches .bio {
