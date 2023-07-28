@@ -22,6 +22,7 @@ function App() {
   const backgroundStyles = ["glitch", "bio", "knight"];
   const [selectedTile, setSelectedTile] = useState("blank");
   const [backgroundStyle, setBackgroundStyle] = useState(backgroundStyles[0]);
+  const [previewTile, setPreviewTile] = useState(selectedTile);
 
   const initializeGrid = () => Array(13).fill(Array(21).fill("blank"));
 
@@ -173,6 +174,14 @@ function App() {
     return count - reservedCells.size;
   };
 
+  const handlePreviewMouseEnter = (tile) => {
+    setPreviewTile(tile);
+  };
+
+  const handlePreviewMouseLeave = () => {
+    setPreviewTile(selectedTile);
+  };
+
   return (
     <div className="app-wrap">
       <header className="app">
@@ -201,12 +210,14 @@ function App() {
                   tile === selectedTile ? " selected" : ""
                 } ${tile}`}
                 onClick={() => setSelectedTile(tile)}
+                onMouseEnter={() => handlePreviewMouseEnter(tile)}
+                onMouseLeave={handlePreviewMouseLeave}
               ></div>
             ))}
           </div>
           <p className="selected-swatch">{kebabToTitleCase(selectedTile)}</p>
         </div>
-        <div className={ `preview ${selectedTile}` }></div>
+        <div className={ `preview tile ${previewTile}` }></div>
         <div className="controls">
           <p>Tile Count: {countTiles()}</p>
           <button onClick={handleResetGrid}>Reset Grid</button>
