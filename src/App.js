@@ -22,6 +22,7 @@ function App() {
   const backgroundStyles = ["glitch", "bio", "knight"];
   const [selectedTile, setSelectedTile] = useState("blank");
   const [backgroundStyle, setBackgroundStyle] = useState(backgroundStyles[0]);
+  const [previewBgStyle, setPreviewBgStyle] = useState(backgroundStyle);
   const [previewTile, setPreviewTile] = useState(selectedTile);
 
   const initializeGrid = () => Array(13).fill(Array(21).fill("blank"));
@@ -182,6 +183,15 @@ function App() {
     setPreviewTile(selectedTile);
   };
 
+  const handleBgStyleMouseEnter = (style) => {
+    setPreviewBgStyle(style);
+  };
+
+  const handleBgStyleMouseLeave = () => {
+    setPreviewBgStyle(backgroundStyle);
+  };
+
+
   return (
     <div className="app-wrap">
       <header className="app">
@@ -195,10 +205,12 @@ function App() {
                   styleName === backgroundStyle ? " selected" : ""
                 } ${styleName}`}
                 onClick={() => setBackgroundStyle(styleName)}
+                onMouseEnter={() => handleBgStyleMouseEnter(styleName)}
+                onMouseLeave={handleBgStyleMouseLeave}
               ></div>
             ))}
           </div>
-          <p className="selected-swatch">{kebabToTitleCase(backgroundStyle)}</p>
+          <p className="selected-swatch">{kebabToTitleCase(previewBgStyle)}</p>
         </div>
         <div className="palette">
           <h3>Tile Pattern</h3>
@@ -215,7 +227,7 @@ function App() {
               ></div>
             ))}
           </div>
-          <p className="selected-swatch">{kebabToTitleCase(selectedTile)}</p>
+          <p className="selected-swatch">{kebabToTitleCase(previewTile)}</p>
         </div>
         <div className={ `preview tile ${previewTile}` }></div>
         <div className="controls">
