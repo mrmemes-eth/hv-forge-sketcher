@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# hv-forge-sketcher
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simple tool for planning the layout of a Forge in the Yuga Labs HV-MTL game
 
-## Available Scripts
+### Tips
 
-In the project directory, you can run:
+Saying thanks by tipping `mrmemes.eth` on ETH or
+[`@mrmemes_eth`](https://twitter.com/mrmemes_eth) on twitter is very much
+appreciated.  Linking transactions in feature requests gets my attention.
 
-### `npm start`
+### Notes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* The non-optional tiles (base and portals) cannot have their tiles changed,
+  since you can't do that in-game and have a fixed position on the grid.
+* The grid is responsive and has a max-height set that prevents it from
+  getting larger or wider than your screen
+* Layouts are stored in local storage on your computer
+* There is currently only support for one layout per HV type
+* There are currently only 3 HV types (knight, bio and glitch) because those
+  are the only kind I have
+* There are currently only 14 tile patterns, as that's all I have unlocked
+* Textures for tiles were extracted from the GLB files delivered over the wire
+  in my play sessions. I took these 3D files and rendered them locally,
+  capturing a top-down view instead of an isomorphic one.
+* Improvements are very welcome
 
-### `npm test`
+### Those weird little buttons
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+There are three control buttons that may help while you're iterating on your layout:
 
-### `npm run build`
+1. Reset Grid: clear all tile pattern placements and revert to the base grid
+2. Save Restore Point: capture a "backup" for your layout... I use this to
+   represent the current state of my grid and then iterate on potential
+   changes.
+3. Restore: replaces your current grid with the version stored by "save
+   restore point"
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Running
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The base app was generated with [Create React
+App](https://create-react-app.dev/), so many [familiar
+scripts](https://create-react-app.dev/docs/available-scripts) are available
+for development. If you want to run locally or start development, you can:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. `npm i`
+2. `npm start`
 
-### `npm run eject`
+&hellip;and your browser will be opened to `http://localhost:3000`.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### TODO
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* Add support for remaining HV types
+* Save, list and switch between named versions of grid layouts
+* Display "correct" graphics for the base, portals and the "big portal"
+* Add support for placing/rotating objects
+* Undo/history
+* mobile responsive
