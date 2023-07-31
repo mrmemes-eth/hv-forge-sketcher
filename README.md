@@ -4,6 +4,11 @@ Simple tool for planning the layout of a Forge in the Yuga Labs HV-MTL game
 
 ![Example grid layout for a glitch type HV](./public/images/example-screen-shot.jpg)
 
+### Dive Right In
+
+You can use the latest version of this app for free at
+[https://hv-forge-sketcher.netlify.app/](https://hv-forge-sketcher.netlify.app/).
+
 ### Tips
 
 Saying thanks by tipping `mrmemes.eth` on ETH or
