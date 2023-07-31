@@ -254,6 +254,10 @@ function App() {
           ))}
         </div>
       </main>
+      <footer className="app">
+        <p><a href="https://github.com/mrmemes-eth/hv-forge-sketcher">Fork me on github</a></p>
+        <p>Tip me on ETH: <code>mrmemes.eth</code> or on twitter: <a href="https://twitter.com/mrmemes_eth"><code>@mrmemes_eth</code></a>.</p>
+      </footer>
     </div>
   );
 }

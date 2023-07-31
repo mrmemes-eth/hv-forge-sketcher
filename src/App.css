@@ -18,14 +18,22 @@ main.app {
   justify-content: center;
 }
 
+footer.app {
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: small;
+}
+
 header.app .controls {
   align-self: center;
 }
 
 main.app .grid {
   width: 100%;
-  max-width: calc(calc(100vh - 200px) * calc(21 / 13));
-  max-height: calc(100vh - 200px);
+  height: auto;
+  max-width: calc(calc(100vh - 220px) * calc(21 / 13));
+  max-height: calc(100vh - 220px);
   border: 1px solid rgba(16, 16, 16, 0.9);
   border-left: none;
   border-top: none;
@@ -37,7 +45,7 @@ main.app .grid {
 
 .grid .cell{
   width: calc(100% / 21);
-  max-width: calc(calc(100vh - 200px) / 13);
+  max-width: calc(calc(100vh - 220px) / 13);
   aspect-ratio: 1;
   border: 1px solid rgba(16, 16, 16, 0.9);
   border-right: none;
