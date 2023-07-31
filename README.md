@@ -2,6 +2,8 @@
 
 Simple tool for planning the layout of a Forge in the Yuga Labs HV-MTL game
 
+![Example grid layout for a glitch type HV](./public/images/example-screen-shot.jpg)
+
 ### Tips
 
 Saying thanks by tipping `mrmemes.eth` on ETH or
