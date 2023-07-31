@@ -271,26 +271,76 @@ main.app .grid {
   opacity: 0.75;
 }
 
-.swatches .bio {
-  background: #416f19;
-}
-
-.swatches .knight {
-  background: #54a9c9;
-}
-
-.swatches .glitch {
+.swatches .dynamic,
+.grid.dynamic {
   background: #5c787f;
 }
 
+.swatches .glitch,
+.grid.glitch {
+  background: #1d3a16;
+}
+
+.swatches .bio,
 .grid.bio {
   background: #416f19;
 }
+
+.swatches .knight,
 .grid.knight {
   background: #54a9c9;
 }
-.grid.glitch {
-  background: #5c787f;
+
+.swatches .celestial,
+.grid.celestial {
+  background: #6e0047;
+}
+
+.swatches .reaver,
+.grid.reaver {
+  background: #1c0000;
+}
+
+.swatches .holo,
+.grid.holo {
+  background: #96cbfb;
+}
+
+.swatches .legendary,
+.grid.legendary {
+  background: #7a044d;
+}
+
+.dynamic .base {
+  background: #c794d9;
+}
+
+.glitch .base {
+  background: #cdb96b;
+}
+
+.bio .base {
+  background: #dcb19c;
+}
+
+.knight .base {
+  background: #829399;
+}
+
+.celestial .base {
+  background: #735ac5;
+}
+
+.reaver .base {
+  background: #432c53;
+}
+
+.holo .base {
+  background: #12927d;
+}
+
+.legendary .base {
+  background: #1f2034;
 }
 
 .blank {
@@ -393,18 +443,6 @@ main.app .grid {
       transparent 50.5%,
       transparent 100%
     );
-}
-
-.knight .restricted.base {
-  background: #829399;
-}
-
-.glitch .restricted.base {
-  background: #c794d9;
-}
-
-.bio .restricted.base {
-  background: #dcb19c;
 }
 
 .restricted.portal {

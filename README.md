@@ -2,7 +2,7 @@
 
 Simple tool for planning the layout of a Forge in the Yuga Labs HV-MTL game
 
-![Example grid layout for a glitch type HV](./public/images/example-screen-shot.jpg)
+![Example grid layout for a dynamic type HV](./public/images/example-screen-shot.jpg)
 
 ### Dive Right In
 
@@ -24,7 +24,7 @@ appreciated.  Linking transactions in feature requests gets my attention.
   getting larger or wider than your screen
 * Layouts are stored in local storage on your computer
 * There is currently only support for one layout per HV type
-* There are currently only 3 HV types (knight, bio and glitch) because those
+* There are currently only 3 HV types (knight, bio and dynamic) because those
   are the only kind I have
 * There are currently only 14 tile patterns, as that's all I have unlocked
 * Textures for tiles were extracted from the GLB files delivered over the wire

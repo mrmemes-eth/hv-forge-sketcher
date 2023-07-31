@@ -19,21 +19,23 @@ function App() {
     "wooden-floor",
     "blank",
   ];
-  const backgroundStyles = ["glitch", "bio", "knight"];
+  const backgroundStyles = ["glitch", "dynamic", "bio", "knight", "celestial", "reaver", "holo", "legendary"];
   const [selectedTile, setSelectedTile] = useState("blank");
   const [backgroundStyle, setBackgroundStyle] = useState(backgroundStyles[0]);
   const [previewBgStyle, setPreviewBgStyle] = useState(backgroundStyle);
   const [previewTile, setPreviewTile] = useState(selectedTile);
 
-  const initializeGrid = () => Array(13).fill(Array(21).fill("blank"));
+  const initHVGrid = () => {
+    return {
+      grid: Array(13).fill(Array(21).fill("blank")),
+      restorePoint: null,
+    };
+  };
 
   const initializeSaveData = () => {
     const saveData = {};
     backgroundStyles.forEach((style) => {
-      saveData[style] = {
-        grid: initializeGrid(),
-        restorePoint: null,
-      };
+      saveData[style] = initHVGrid();
     });
     return saveData;
   };
@@ -50,6 +52,9 @@ function App() {
   const setCellTile = (bg, rowIndex, colIndex, tile) => {
     setSaveData((prevSaveData) => {
       const updatedSaveData = cloneObject(prevSaveData);
+      if (!updatedSaveData[bg]) {
+        updatedSaveData[bg] = initHVGrid();
+      }
       updatedSaveData[bg]["grid"][rowIndex][colIndex] = tile;
       return updatedSaveData;
     });
@@ -122,7 +127,7 @@ function App() {
   const handleResetGrid = () => {
     setSaveData((prevSaveData) => {
       const updatedSaveData = cloneObject(prevSaveData);
-      updatedSaveData[backgroundStyle]["grid"] = initializeGrid();
+      updatedSaveData[backgroundStyle] = initHVGrid();
       return updatedSaveData;
     });
     setupReservedCells();
@@ -170,9 +175,10 @@ function App() {
   };
 
   const countTiles = () => {
-    const count = saveData[backgroundStyle]["grid"]
-      .flatMap((row) => row.filter((cell) => cell !== "blank"))
-      .length;
+    if (!saveData[backgroundStyle]) return 0;
+    const count = saveData[backgroundStyle]["grid"].flatMap((row) =>
+      row.filter((cell) => cell !== "blank")
+    ).length;
     return count - reservedCells.size;
   };
 
@@ -191,7 +197,6 @@ function App() {
   const handleBgStyleMouseLeave = () => {
     setPreviewBgStyle(backgroundStyle);
   };
-
 
   return (
     <div className="app-wrap">
@@ -230,7 +235,7 @@ function App() {
           </div>
           <p className="selected-swatch">{kebabToTitleCase(previewTile)}</p>
         </div>
-        <div className={ `preview tile ${previewTile}` }></div>
+        <div className={`preview tile ${previewTile}`}></div>
         <div className="controls">
           <p>Tile Count: {countTiles()}</p>
           <button onClick={handleResetGrid}>Reset Grid</button>
@@ -256,8 +261,18 @@ function App() {
         </div>
       </main>
       <footer className="app">
-        <p><a href="https://github.com/mrmemes-eth/hv-forge-sketcher">Fork me on github</a></p>
-        <p>Tip me on ETH: <code>mrmemes.eth</code> or on twitter: <a href="https://twitter.com/mrmemes_eth"><code>@mrmemes_eth</code></a>.</p>
+        <p>
+          <a href="https://github.com/mrmemes-eth/hv-forge-sketcher">
+            Fork me on github
+          </a>
+        </p>
+        <p>
+          Tip me on ETH: <code>mrmemes.eth</code> or on twitter:{" "}
+          <a href="https://twitter.com/mrmemes_eth">
+            <code>@mrmemes_eth</code>
+          </a>
+          .
+        </p>
       </footer>
     </div>
   );
