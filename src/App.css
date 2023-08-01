@@ -33,6 +33,22 @@ header.app .controls {
   --max-height: calc(100vh - 220px);
   --cell-width: calc(100% / 21);
   --cell-max-width: calc(var(--max-height) / 13);
+  --color-reaver-primary: 246,36,37;
+  --color-reaver-secondary: 60,45,85;
+  --color-dynamic-primary: 151,251,225;
+  --color-dynamic-secondary: 44,71,84;
+  --color-knight-primary: 114,220,246;
+  --color-knight-secondary: 1,24,91;
+  --color-glitch-primary: 164,179,79;
+  --color-glitch-secondary: 54, 109, 42;
+  --color-bio-primary: 76,128,28;
+  --color-bio-secondary: 49,84,19;
+  --color-celestial-primary: 249,45,142;
+  --color-celestial-secondary: 17,17,61;
+  --color-holo-primary: 57,219,162;
+  --color-holo-secondary: 0, 110, 109;
+  --color-guest-primary: 226,252,84;
+  --color-guest-secondary: 226,252,84
 }
 
 main.app .grid {
@@ -277,44 +293,85 @@ main.app .grid {
   opacity: 0.75;
 }
 
-.swatches .dynamic,
+.swatches .dynamic {
+  background: rgb(var(--color-dynamic-primary));
+}
+
 .grid.dynamic {
-  background: #5c787f;
+  --color-primary: var(--color-dynamic-primary);
+  --color-secondary: var(--color-dynamic-secondary);
 }
 
-.swatches .glitch,
+.swatches .glitch {
+  background: rgb(var(--color-glitch-primary));
+}
+
 .grid.glitch {
-  background: #1d3a16;
+  --color-primary: var(--color-glitch-primary);
+  --color-secondary: var(--color-glitch-secondary);
 }
 
-.swatches .bio,
+.swatches .bio {
+  background: rgb(var(--color-bio-primary));
+}
+
 .grid.bio {
-  background: #416f19;
+  --color-primary: var(--color-bio-primary);
+  --color-secondary: var(--color-bio-secondary);  
 }
 
-.swatches .knight,
+.swatches .knight {
+  background: rgb(var(--color-knight-primary));
+}
+
 .grid.knight {
-  background: #54a9c9;
+  --color-primary: var(--color-knight-primary);
+  --color-secondary: var(--color-knight-secondary);
 }
 
-.swatches .celestial,
+.swatches .celestial {
+  background: rgb(var(--color-celestial-primary));
+}
+
 .grid.celestial {
-  background: #6e0047;
+  --color-primary: var(--color-celestial-primary);
+  --color-secondary: var(--color-celestial-secondary);
 }
 
-.swatches .reaver,
+.swatches .reaver {
+  background: rgb(var(--color-reaver-primary));
+}
+
 .grid.reaver {
-  background: #1c0000;
+  --color-primary: var(--color-reaver-primary);
+  --color-secondary: var(--color-reaver-secondary);
 }
 
-.swatches .holo,
+.swatches .holo {
+  background: rgb(var(--color-holo-primary));
+}
+
 .grid.holo {
-  background: #96cbfb;
+  --color-primary: var(--color-holo-primary);
+  --color-secondary: var(--color-holo-secondary);
 }
 
-.swatches .legendary,
+.grid {
+  background: radial-gradient(rgb(var(--color-primary)), rgb(var(--color-secondary)));
+}
+
+.swatches .legendary {
+  background: rgb(0,0,0);
+}
+
 .grid.legendary {
-  background: #7a044d;
+  --color-secondary: 255,255,255;
+  --color-stops-1: 255,230,72;
+  --color-stops-2: 143,243,253;
+  --color-stops-3: 119,102,249;
+  --color-stops-4: 242,86,195;
+  --color-primary: linear-gradient(-225deg,rgb(var(--color-stops-1)),rgb(var(--color-stops-2)),rgb(var(--color-stops-3)),rgb(var(--color-stops-4)));
+  background: var(--color-primary);
 }
 
 .dynamic .base {
