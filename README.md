@@ -59,10 +59,11 @@ for development. If you want to run locally or start development, you can:
 
 * ~~Add support for remaining HV types~~
 * ~~Display "correct" graphics for the base, portals and the "big portal"~~
-* rotate tile patterns
-* clicking a tile again with the same texture selected clears it
+* ~~clicking a tile again with the same texture selected clears it~~
+* better water backgrounds
 * Save, list and switch between named versions of grid layouts
-* Add support for placing/rotating objects
 * Undo/history
 * mobile responsive
 * isomorphic view?
+* Add support for placing/rotating objects?
+* rotate tile patterns?
