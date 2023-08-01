@@ -29,11 +29,17 @@ header.app .controls {
   align-self: center;
 }
 
+:root {
+  --max-height: calc(100vh - 220px);
+  --cell-width: calc(100% / 21);
+  --cell-max-width: calc(var(--max-height) / 13);
+}
+
 main.app .grid {
   width: 100%;
   height: auto;
-  max-width: calc(calc(100vh - 220px) * calc(21 / 13));
-  max-height: calc(100vh - 220px);
+  max-width: calc(var(--max-height) * calc(21 / 13));
+  max-height: var(--max-height);
   border: 1px solid rgba(16, 16, 16, 0.9);
   border-left: none;
   border-top: none;
@@ -44,8 +50,8 @@ main.app .grid {
 }
 
 .grid .cell{
-  width: calc(100% / 21);
-  max-width: calc(calc(100vh - 220px) / 13);
+  width: var(--cell-width);
+  max-width: var(--cell-max-width);
   aspect-ratio: 1;
   border: 1px solid rgba(16, 16, 16, 0.9);
   border-right: none;
@@ -313,34 +319,114 @@ main.app .grid {
 
 .dynamic .base {
   background: #c794d9;
+  position: relative;
+}
+.dynamic .base::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/dynamic-base.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
 }
 
 .glitch .base {
   background: #cdb96b;
+  position: relative;
+}
+.glitch .base::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/glitch-base.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
 }
 
 .bio .base {
   background: #dcb19c;
+  position: relative;
+}
+.bio .base::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/bio-base.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
 }
 
 .knight .base {
   background: #829399;
+  position: relative;
+}
+.knight .base::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/knight-base.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
 }
 
 .celestial .base {
   background: #735ac5;
+  position: relative;
+}
+.celestial .base::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/celestial-base.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
 }
 
 .reaver .base {
   background: #432c53;
+  position: relative;
+}
+.reaver .base::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/reaver-base.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
 }
 
 .holo .base {
   background: #12927d;
+  position: relative;
+}
+.holo .base::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/holo-base.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
 }
 
 .legendary .base {
   background: #1f2034;
+  position: relative;
+}
+.legendary .base::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/legendary-base.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
 }
 
 .blank {
@@ -447,9 +533,33 @@ main.app .grid {
 
 .restricted.portal {
   background: #504b36;
+  position: relative;
+}
+.restricted.portal.first::after {
+  content: "";
+  position: absolute;
+  background-image: url("../public/images/portal.png");
+  width: 202%;
+  aspect-ratio: 1;
+  background-size: 100% 100%;
+  z-index: 1;
+  opacity: 0.95;
 }
 
 .restricted.big-portal {
   background: #121012;
+  position: relative;
+}
+.restricted.big-portal.first::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-image: url("../public/images/portal-rift.png");
+  width: calc(303% + 3px);
+  aspect-ratio: 1;
+  background-size: 100% 100%;
+  z-index: 1;
+  opacity: 0.95;
 }
 
