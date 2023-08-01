@@ -265,6 +265,20 @@ main.app .grid {
   opacity: 0.75;
 }
 
+.water {
+  background: rgba(25,91,173,1);
+  position: relative;
+}
+.water::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/images/water.png");
+  background-size: 100% 100%;
+  opacity: 0.75;
+}
+
 .watermelon {
   background: #354220;
   position: relative;

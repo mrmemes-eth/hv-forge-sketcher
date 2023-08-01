@@ -15,6 +15,7 @@ function App() {
     "nailed-metal",
     "sand",
     "warehouse",
+    "water",
     "watermelon",
     "wooden-floor",
     "blank",
