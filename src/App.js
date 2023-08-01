@@ -19,7 +19,16 @@ function App() {
     "wooden-floor",
     "blank",
   ];
-  const backgroundStyles = ["glitch", "dynamic", "bio", "knight", "celestial", "reaver", "holo", "legendary"];
+  const backgroundStyles = [
+    "glitch",
+    "dynamic",
+    "bio",
+    "knight",
+    "celestial",
+    "reaver",
+    "holo",
+    "legendary",
+  ];
   const [selectedTile, setSelectedTile] = useState("blank");
   const [backgroundStyle, setBackgroundStyle] = useState(backgroundStyles[0]);
   const [previewBgStyle, setPreviewBgStyle] = useState(backgroundStyle);
@@ -55,7 +64,10 @@ function App() {
       if (!updatedSaveData[bg]) {
         updatedSaveData[bg] = initHVGrid();
       }
-      updatedSaveData[bg]["grid"][rowIndex][colIndex] = tile;
+      const currentTile = updatedSaveData[bg]["grid"][rowIndex][colIndex];
+      const isRestricted = currentTile.substring(0, 10) === "restricted";
+      updatedSaveData[bg]["grid"][rowIndex][colIndex] =
+        isRestricted || currentTile === tile ? "blank" : tile;
       return updatedSaveData;
     });
   };
