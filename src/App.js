@@ -231,7 +231,7 @@ function App() {
   const countTiles = () => {
     if (!saveData[backgroundStyle]) return 0;
     const count = saveData[backgroundStyle]["grid"].flatMap((row) =>
-      row.filter((cell) => cell !== "blank")
+      row.filter((tile) => tile.title !== "blank")
     ).length;
     return count - reservedCells.size;
   };
