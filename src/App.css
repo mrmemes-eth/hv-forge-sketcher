@@ -74,6 +74,22 @@ main.app .grid {
   border-bottom: none;
 }
 
+.grid .cell,
+.swatches .tile,
+.preview.tile {
+  position: relative;
+}
+
+.grid .cell:not(.restricted)::after,
+.swatches .tile::after,
+.preview.tile::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+}
+
 .palette .selected-swatch {
   font-size: small;
   font-style: italic;
@@ -98,213 +114,108 @@ main.app .grid {
 
 .bark {
   background: #cba287;
-  position: relative;
 }
 
 .bark::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../public/images/bark.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
+  background-image: url("../public/images/bark.png") !important;
 }
 
 .black-rock {
   background: #26262a;
-  position: relative;
 }
 .black-rock::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../public/images/black-rock.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
+  background-image: url("../public/images/black-rock.png") !important;
 }
 
 .clay {
   background: #d2af8f;
-  position: relative;
 }
 .clay::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../public/images/clay.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
+  background-image: url("../public/images/clay.png") !important;
 }
 
 .concrete {
   background: #c7c6cb;
-  position: relative;
 }
 .concrete::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../public/images/concrete.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
+  background-image: url("../public/images/concrete.png") !important;
 }
 
 .grassland {
   background: #9d9c5b;
-  position: relative;
 }
 .grassland::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../public/images/grassland.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
+  background-image: url("../public/images/grassland.png") !important;
 }
 
 .heavy-metal {
   background: #5b2b62;
-  position: relative;
 }
 .heavy-metal::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../public/images/heavy-metal.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
+  background-image: url("../public/images/heavy-metal.png") !important;
 }
 
 .lawn {
   background: #726b31;
-  position: relative;
 }
 .lawn::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../public/images/lawn.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
+  background-image: url("../public/images/lawn.png") !important;
 }
 
 .light-concrete {
   background: #97919a;
-  position: relative;
 }
 .light-concrete::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../public/images/light-concrete.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
+  background-image: url("../public/images/light-concrete.png") !important;
 }
 
 .metal {
   background: #aa7cad;
-  position: relative;
 }
 .metal::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../public/images/metal.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
+  background-image: url("../public/images/metal.png") !important;
 }
 
 .nailed-metal {
   background: #342140;
-  position: relative;
 }
 .nailed-metal::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../public/images/nailed-metal.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
+  background-image: url("../public/images/nailed-metal.png") !important;
 }
 
 .sand {
   background: #d0c3ba;
-  position: relative;
 }
 .sand::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../public/images/sand.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
+  background-image: url("../public/images/sand.png") !important;
 }
 
 .warehouse {
   background: #b7b0bd;
-  position: relative;
 }
 .warehouse::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../public/images/warehouse.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
+  background-image: url("../public/images/warehouse.png") !important;
 }
 
 .water {
   background: rgba(25, 91, 173, 1);
-  position: relative;
 }
 .water::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../public/images/water.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
+  background-image: url("../public/images/water.png") !important;
 }
 
 .watermelon {
   background: #354220;
-  position: relative;
 }
 .watermelon::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../public/images/watermelon.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
+  background-image: url("../public/images/watermelon.png") !important;
 }
 
 .wooden-floor {
   background: #a8694b;
-  position: relative;
 }
 .wooden-floor::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../public/images/wooden-floor.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
+  background-image: url("../public/images/wooden-floor.png") !important;
 }
 
 .swatches .dynamic {
@@ -397,116 +308,73 @@ main.app .grid {
   background: var(--color-primary);
 }
 
-.dynamic .base {
-  background: #c794d9;
+.base {
   position: relative;
 }
-.dynamic .base::after {
+
+.base::after{
   content: "";
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url("../public/images/dynamic-base.png");
   background-size: 100% 100%;
   opacity: 0.75;
+}
+
+.dynamic .base {
+  background: #c794d9;
+}
+.dynamic .base::after {
+  background-image: url("../public/images/dynamic-base.png");
 }
 
 .glitch .base {
   background: #cdb96b;
-  position: relative;
 }
 .glitch .base::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
   background-image: url("../public/images/glitch-base.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
 }
 
 .bio .base {
   background: #dcb19c;
-  position: relative;
 }
 .bio .base::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
   background-image: url("../public/images/bio-base.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
 }
 
 .knight .base {
   background: #829399;
-  position: relative;
 }
 .knight .base::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
   background-image: url("../public/images/knight-base.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
 }
 
 .celestial .base {
   background: #735ac5;
-  position: relative;
 }
 .celestial .base::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
   background-image: url("../public/images/celestial-base.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
 }
 
 .reaver .base {
   background: #432c53;
-  position: relative;
 }
 .reaver .base::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
   background-image: url("../public/images/reaver-base.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
 }
 
 .holo .base {
   background: #12927d;
-  position: relative;
 }
 .holo .base::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
   background-image: url("../public/images/holo-base.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
 }
 
 .legendary .base {
   background: #1f2034;
-  position: relative;
 }
 .legendary .base::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
   background-image: url("../public/images/legendary-base.png");
-  background-size: 100% 100%;
-  opacity: 0.75;
 }
 
 .blank {
