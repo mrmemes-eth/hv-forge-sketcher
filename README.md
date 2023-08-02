@@ -60,7 +60,7 @@ for development. If you want to run locally or start development, you can:
 * ~~Add support for remaining HV types~~
 * ~~Display "correct" graphics for the base, portals and the "big portal"~~
 * ~~clicking a tile again with the same texture selected clears it~~
-* better water backgrounds
+* ~~better water backgrounds~~
 * Save, list and switch between named versions of grid layouts
 * Undo/history
 * mobile responsive
