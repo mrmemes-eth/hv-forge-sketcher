@@ -39,10 +39,7 @@ function App() {
     return {
       title: name,
       rotation: 0,
-      object: {
-        type: null,
-        rotation: 0,
-      },
+      version: "0.0.1"
     };
   };
 
@@ -75,6 +72,11 @@ function App() {
       const updatedSaveData = cloneObject(prevSaveData);
       if (!updatedSaveData[bg]) {
         updatedSaveData[bg] = initHVGrid();
+      }
+      // object version upgrade, this should also handle upgrades from the tile being a string
+      if (updatedSaveData[bg]["grid"][rowIndex][colIndex].version !== "0.0.1") {
+        updatedSaveData[bg]["grid"][rowIndex][colIndex] = initTile(tileName);
+        return updatedSaveData;
       }
       const currentTile = updatedSaveData[bg]["grid"][rowIndex][colIndex];
       const isRestricted = currentTile.title.substring(0, 10) === "restricted";
