@@ -90,6 +90,18 @@ main.app .grid {
   background-size: 100% 100%;
 }
 
+.grid .cell[data-rotation="90"]::after {
+  transform: rotate(90deg);
+}
+
+.grid .cell[data-rotation="180"]::after {
+  transform: rotate(180deg);
+}
+
+.grid .cell[data-rotation="270"]::after {
+  transform: rotate(270deg);
+}
+
 .palette .selected-swatch {
   font-size: small;
   font-style: italic;
