@@ -35,9 +35,20 @@ function App() {
   const [previewBgStyle, setPreviewBgStyle] = useState(backgroundStyle);
   const [previewTile, setPreviewTile] = useState(selectedTile);
 
+  const initTile = (name = "blank") => {
+    return {
+      title: name,
+      rotation: 0,
+      object: {
+        type: null,
+        rotation: 0,
+      },
+    };
+  };
+
   const initHVGrid = () => {
     return {
-      grid: Array(13).fill(Array(21).fill("blank")),
+      grid: Array(13).fill(Array.from({ length: 21 }, initTile)),
       restorePoint: null,
     };
   };
@@ -59,16 +70,19 @@ function App() {
 
   const cloneObject = (obj) => JSON.parse(JSON.stringify(obj));
 
-  const setCellTile = (bg, rowIndex, colIndex, tile) => {
+  const setCellTile = (bg, rowIndex, colIndex, tileName) => {
     setSaveData((prevSaveData) => {
       const updatedSaveData = cloneObject(prevSaveData);
       if (!updatedSaveData[bg]) {
         updatedSaveData[bg] = initHVGrid();
       }
       const currentTile = updatedSaveData[bg]["grid"][rowIndex][colIndex];
-      const isRestricted = currentTile.substring(0, 10) === "restricted";
-      updatedSaveData[bg]["grid"][rowIndex][colIndex] =
-        isRestricted || currentTile === tile ? "blank" : tile;
+      const isRestricted = currentTile.title.substring(0, 10) === "restricted";
+      if (isRestricted) {
+        return updatedSaveData;
+      } else {
+        updatedSaveData[bg]["grid"][rowIndex][colIndex] = initTile(tileName);
+      }
       return updatedSaveData;
     });
   };
@@ -129,11 +143,32 @@ function App() {
     localStorage.setItem("grid-data", JSON.stringify(saveData));
   }, [saveData]);
 
-  const handleCellPaint = (rowIndex, colIndex, tile) => {
+  const handleTileRotation = (rowIndex, colIndex, angle) => {
+    setSaveData((prevSaveData) => {
+      const updatedSaveData = cloneObject(prevSaveData);
+      const { grid } = updatedSaveData[backgroundStyle];
+      const currentTile = grid[rowIndex][colIndex];
+      const isRestricted = currentTile.title.substring(0, 10) === "restricted";
+      if (isRestricted) {
+        return updatedSaveData;
+      }
+      currentTile.rotation += angle;
+      if (currentTile.rotation >= 360) {
+        currentTile.rotation -= 360;
+      }
+      return updatedSaveData;
+    });
+  };
+
+  const handleCellPaint = (event, rowIndex, colIndex, tile) => {
     if (reservedCells.has([rowIndex, colIndex].toString())) {
       return;
     } else {
-      setCellTile(backgroundStyle, rowIndex, colIndex, tile);
+      if (event.shiftKey) {
+        setCellTile(backgroundStyle, rowIndex, colIndex, "blank");
+      } else {
+        setCellTile(backgroundStyle, rowIndex, colIndex, tile);
+      }
     }
   };
 
@@ -169,13 +204,19 @@ function App() {
   };
 
   const [isPainting, setIsPainting] = useState(false);
-  const handleMouseDown = (rowIndex, colIndex) => {
-    handleCellPaint(rowIndex, colIndex, selectedTile);
+
+  const handleMouseDown = (event, rowIndex, colIndex) => {
     setIsPainting(true);
+    if (event.button === 2) {
+      handleTileRotation(rowIndex, colIndex, 90);
+    } else {
+      handleCellPaint(event, rowIndex, colIndex, selectedTile);
+    }
   };
-  const handleMouseEnter = (rowIndex, colIndex) => {
+
+  const handleMouseEnter = (event, rowIndex, colIndex) => {
     if (isPainting) {
-      handleCellPaint(rowIndex, colIndex, selectedTile);
+      handleCellPaint(event, rowIndex, colIndex, selectedTile);
     }
   };
   const handleMouseUp = () => {
@@ -263,9 +304,15 @@ function App() {
               {row.map((tile, colIndex) => (
                 <div
                   key={colIndex}
-                  className={`cell ${tile}`}
-                  onMouseDown={() => handleMouseDown(rowIndex, colIndex)}
-                  onMouseEnter={() => handleMouseEnter(rowIndex, colIndex)}
+                  data-rotation={tile.rotation}
+                  className={`cell ${tile.title}`}
+                  onMouseDown={(event) =>
+                    handleMouseDown(event, rowIndex, colIndex)
+                  }
+                  onMouseEnter={(event) =>
+                    handleMouseEnter(event, rowIndex, colIndex)
+                  }
+                  onContextMenu={(event) => event.preventDefault()}
                   onMouseUp={handleMouseUp}
                 ></div>
               ))}
